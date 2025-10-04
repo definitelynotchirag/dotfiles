@@ -1,0 +1,66 @@
+# - --------- -
+# - Autostart -
+# - --------- -
+
+# Run with every reload
+exec_always {
+    # Xwayland app settings
+    xrdb ~/.Xdefaults
+    
+    # Import Gsettings
+    ~/.local/bin/import-gsettings
+}
+
+# Run once on login
+exec {
+    # XDG autostart
+    dex --autostart
+
+    # Start pipewire
+    # ~/.local/bin/start-pipewire
+
+    # Sway does not set DISPLAY/WAYLAND_DISPLAY in the systemd user environment
+    # See FS#63021
+    # Adapted from xorg's 50-systemd-user.sh, which achieves a similar goal.
+    # - systemd
+    # systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_CURRENT_DESKTOP=sway
+    # - non-systemd
+    hash dbus-update-activation-environment 2>/dev/null && \
+         dbus-update-activation-environment --systemd --all \
+         dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_CURRENT_DESKTOP=sway
+
+    # Prevents GTK apps from hanging for 15-20 sec before launching
+    dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+    dbus-update-activation-environment XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE
+
+    # Desktop portal
+    /usr/lib/xdg-desktop-portal -r
+    /usr/lib/xdg-desktop-portal-wlr -r
+
+    # Waybar - Statusbar
+    waybar
+    
+    # Notification
+    mako
+    
+    # Polkit
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+    
+    # NetworkManager Applet
+    nm-applet
+
+    # Bluetooth Applet
+    blueman-applet
+
+    # MPD
+    mpd && mpd-mpris
+
+    # Fcitx5
+    # fcitx5
+
+    # Clipboard manager
+    wl-paste --type text --watch cliphist store
+    wl-paste --type image --watch cliphist store
+}
+
+# vim:set ft=conf:

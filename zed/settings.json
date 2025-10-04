@@ -1,0 +1,63 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "assistant": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
+    },
+    "version": "2"
+  },
+  "icon_theme": "Material Icon Theme",
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "project_panel": {
+    "dock": "right"
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Bearded Theme Black Amethyst"
+  },
+  "buffer_font_family": "JetBrains Mono",
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "restore_on_startup": "last_workspace",
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": true,
+    "show_tab_bar_buttons": true
+  },
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false
+  },
+
+  "terminal": {
+    "alternate_scroll": "off",
+    "blinking": "terminal_controlled",
+    "copy_on_select": true,
+    "dock": "bottom",
+    "detect_venv": {
+      "on": {
+        "directories": [".env", "env", ".venv", "venv"],
+        "activate_script": "default"
+      }
+    },
+    "toolbar":{
+      "breadcrumbs": false
+    }
+  }
+}

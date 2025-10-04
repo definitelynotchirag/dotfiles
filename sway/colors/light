@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+BG="#FFFFFF"
+FG="#000000"
+BL="#3C3C43"
+WH="#F2F2F7"
+R="#FF3B30"
+G="#34C759"
+Y="#FFCC00"
+B="#0A84FF"
+M="#AF52DE"
+C="#32ADE6"
+
+SC="#0A84FF"
+BR="#999999"
+
+PR="light"
